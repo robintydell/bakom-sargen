@@ -1,0 +1,2028 @@
+/* ========================================
+
+   1. GRUNDINSTÄLLNINGAR
+
+======================================== */
+
+:root {
+
+    --color-background: #111111;
+
+    --color-surface: #1c1c1c;
+
+    --color-surface-light: #262626;
+
+    --color-primary: #a3e635;
+
+    --color-primary-hover: #b9f75b;
+
+    --color-text: #ffffff;
+
+    --color-text-muted: #c4c4c4;
+
+    --color-border: #333333;
+
+    --container-width: 1200px;
+
+    --border-radius: 14px;
+
+}
+
+* {
+
+    box-sizing: border-box;
+
+    margin: 0;
+
+    padding: 0;
+
+}
+
+html {
+
+    scroll-behavior: smooth;
+
+    scroll-padding-top: 90px;
+
+}
+
+body {
+
+    background-color: var(--color-background);
+
+    color: var(--color-text);
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    line-height: 1.6;
+
+    min-height: 100vh;
+
+}
+
+/* Bilder ska aldrig sticka utanför sina behållare */
+
+img {
+
+    display: block;
+
+    max-width: 100%;
+
+}
+
+a {
+
+    color: inherit;
+
+    text-decoration: none;
+
+}
+
+button {
+
+    font: inherit;
+
+}
+
+button,
+
+a {
+
+    -webkit-tap-highlight-color: transparent;
+
+}
+
+/* Tydlig markering när man använder tangentbord */
+
+a:focus-visible,
+
+button:focus-visible {
+
+    outline: 3px solid var(--color-primary);
+
+    outline-offset: 4px;
+
+}
+
+/* ========================================
+
+   2. SIDHUVUD OCH LOGOTYP
+
+======================================== */
+
+.site-header {
+
+    align-items: center;
+
+    background-color: rgba(17, 17, 17, 0.97);
+
+    border-bottom: 1px solid var(--color-border);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    min-height: 72px;
+
+    padding: 14px 20px;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+}
+
+.logo {
+
+    align-items: center;
+
+    display: inline-flex;
+
+    font-size: 1.1rem;
+
+    font-weight: 900;
+
+    gap: 10px;
+
+    letter-spacing: 0.5px;
+
+}
+
+/* SVG-logotyp – används i sidhuvud och sidfot */
+
+.site-logo-image {
+
+    display: block;
+
+    width: clamp(170px, 22vw, 230px);
+
+    max-width: 100%;
+
+    max-height: 54px;
+
+    height: auto;
+
+    object-fit: contain;
+
+}
+
+/* Loggan ska kunna krympa på smala skärmar utan att trycka undan menyn */
+
+.site-header > .logo {
+
+    flex: 0 1 auto;
+
+    min-width: 0;
+
+}
+
+.site-header .site-logo-image {
+
+    width: clamp(150px, 22vw, 230px);
+
+}
+
+.footer-logo {
+
+    display: flex;
+
+    justify-content: center;
+
+}
+
+.footer-logo .site-logo-image {
+
+    width: 220px;
+
+    max-height: none;
+
+}
+
+/* ========================================
+
+   3. HAMBURGERMENY
+
+======================================== */
+
+.menu-toggle {
+
+    align-items: center;
+
+    background: transparent;
+
+    border: 1px solid var(--color-border);
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    justify-content: center;
+
+    min-height: 44px;
+
+    min-width: 44px;
+
+    padding: 10px;
+
+}
+
+.menu-toggle span {
+
+    background-color: var(--color-text);
+
+    border-radius: 2px;
+
+    height: 2px;
+
+    transition: background-color 0.2s ease;
+
+    width: 22px;
+
+}
+
+.menu-toggle:hover span {
+
+    background-color: var(--color-primary);
+
+}
+
+.main-navigation {
+
+    background-color: var(--color-surface);
+
+    border: 1px solid var(--color-border);
+
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+
+    display: none;
+
+    flex-direction: column;
+
+    left: 0;
+
+    padding: 12px 20px;
+
+    position: absolute;
+
+    right: 0;
+
+    top: 100%;
+
+}
+
+.main-navigation.is-open {
+
+    display: flex;
+
+}
+
+.main-navigation a {
+
+    border-radius: 8px;
+
+    color: var(--color-text-muted);
+
+    padding: 12px;
+
+    transition:
+
+        background-color 0.2s ease,
+
+        color 0.2s ease;
+
+}
+
+.main-navigation a:hover,
+
+.main-navigation a[aria-current="page"] {
+
+    background-color: #292f22;
+
+    color: var(--color-primary);
+
+}
+
+/* ========================================
+
+   4. VÄLKOMSTSEKTION
+
+======================================== */
+
+.hero {
+
+    align-items: center;
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            rgba(0, 0, 0, 0.96) 0%,
+
+            rgba(0, 0, 0, 0.78) 55%,
+
+            rgba(0, 0, 0, 0.28) 100%
+
+        ),
+
+        url("../images/hero-bild.webp") center / cover no-repeat;
+
+    display: flex;
+
+    min-height: 440px;
+
+    padding: 55px 24px;
+
+}
+
+.hero-content {
+
+    margin: 0 auto;
+
+    max-width: var(--container-width);
+
+    width: 100%;
+
+}
+
+.eyebrow {
+
+    color: var(--color-primary);
+
+    font-size: 0.8rem;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 12px;
+
+    text-transform: uppercase;
+
+}
+
+.hero h1 {
+
+    font-size: clamp(2.3rem, 8vw, 4.8rem);
+
+    font-weight: 900;
+
+    line-height: 1.05;
+
+    margin-bottom: 22px;
+
+    max-width: 750px;
+
+    text-transform: uppercase;
+
+}
+
+.hero h1 span {
+
+    color: var(--color-primary);
+
+    display: block;
+
+}
+
+.hero-description {
+
+    color: var(--color-text-muted);
+
+    font-size: 1rem;
+
+    margin-bottom: 28px;
+
+    max-width: 550px;
+
+}
+
+/* ========================================
+
+   5. KNAPPAR
+
+======================================== */
+
+.button {
+
+    align-items: center;
+
+    border: none;
+
+    border-radius: 999px;
+
+    display: inline-flex;
+
+    font-size: 1rem;
+
+    font-weight: 800;
+
+    gap: 18px;
+
+    justify-content: center;
+
+    min-height: 48px;
+
+    padding: 12px 22px;
+
+    transition:
+
+        background-color 0.2s ease,
+
+        transform 0.2s ease;
+
+}
+
+.button-primary {
+
+    background-color: var(--color-primary);
+
+    color: #111111;
+
+}
+
+.button-primary:hover {
+
+    background-color: var(--color-primary-hover);
+
+    transform: translateY(-2px);
+
+}
+
+.button span {
+
+    font-size: 1.4rem;
+
+    line-height: 1;
+
+}
+
+/* ========================================
+
+   6. GEMENSAMMA SEKTIONSINSTÄLLNINGAR
+
+======================================== */
+
+.section-container {
+
+    margin-left: auto;
+
+    margin-right: auto;
+
+    max-width: var(--container-width);
+
+    padding-left: 20px;
+
+    padding-right: 20px;
+
+}
+
+.categories {
+
+    padding-bottom: 55px;
+
+    padding-top: 55px;
+
+}
+
+.section-heading {
+
+    margin-bottom: 26px;
+
+}
+
+.section-heading h2 {
+
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+
+    line-height: 1.2;
+
+    margin-bottom: 12px;
+
+    text-transform: uppercase;
+
+}
+
+.section-heading > p:last-child {
+
+    color: var(--color-text-muted);
+
+    max-width: 550px;
+
+}
+
+/* ========================================
+
+   7. KATEGORIKORT
+
+======================================== */
+
+.category-grid {
+
+    display: grid;
+
+    gap: 18px;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+}
+
+.category-card {
+
+    background-color: var(--color-surface);
+
+    border: 1px solid var(--color-border);
+
+    border-radius: var(--border-radius);
+
+    display: flex;
+
+    flex-direction: column;
+
+    min-width: 0;
+
+    overflow: hidden;
+
+    position: relative;
+
+    transition:
+
+        border-color 0.2s ease,
+
+        transform 0.2s ease;
+
+}
+
+.category-card:hover {
+
+    border-color: var(--color-primary);
+
+    transform: translateY(-3px);
+
+}
+
+.category-card img {
+
+    aspect-ratio: 4 / 3;
+
+    background-color: var(--color-surface-light);
+
+    object-fit: cover;
+
+    width: 100%;
+
+}
+
+.category-content {
+
+    flex: 1;
+
+    padding: 14px;
+
+    padding-right: 28px;
+
+    position: relative;
+
+}
+
+.category-content h3 {
+
+    font-size: 1.05rem;
+
+    line-height: 1.3;
+
+    margin-bottom: 7px;
+
+}
+
+.category-content p {
+
+    color: var(--color-text-muted);
+
+    font-size: 0.88rem;
+
+    line-height: 1.5;
+
+}
+
+.card-arrow {
+
+    color: var(--color-primary);
+
+    font-size: 1.3rem;
+
+    position: absolute;
+
+    right: 10px;
+
+    top: 12px;
+
+}
+
+/* ========================================
+
+   8. LAGINFORMATION
+
+======================================== */
+
+.team-banner {
+
+    align-items: center;
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            var(--color-surface),
+
+            #20251b
+
+        );
+
+    border: 1px solid var(--color-border);
+
+    border-radius: var(--border-radius);
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 18px;
+
+    margin-bottom: 55px;
+
+    padding-bottom: 24px;
+
+    padding-top: 24px;
+
+}
+
+.team-icon {
+
+    align-items: center;
+
+    background-color: #303d20;
+
+    border-radius: 50%;
+
+    color: var(--color-primary);
+
+    display: flex;
+
+    flex-shrink: 0;
+
+    font-size: 1.7rem;
+
+    height: 50px;
+
+    justify-content: center;
+
+    width: 50px;
+
+}
+
+.team-content {
+
+    flex: 1;
+
+    min-width: 180px;
+
+}
+
+.team-content h2 {
+
+    font-size: 1.1rem;
+
+    margin-bottom: 5px;
+
+}
+
+.team-content p {
+
+    color: var(--color-text-muted);
+
+    font-size: 0.9rem;
+
+}
+
+.text-link {
+
+    align-items: center;
+
+    color: var(--color-primary);
+
+    display: inline-flex;
+
+    font-weight: 700;
+
+    gap: 8px;
+
+    padding: 8px 0;
+
+}
+
+/* ========================================
+
+   9. SIDFOT
+
+======================================== */
+
+.site-footer {
+
+    border-top: 1px solid var(--color-border);
+
+    color: var(--color-text-muted);
+
+    padding: 30px 20px 110px;
+
+    text-align: center;
+
+}
+
+.footer-logo {
+
+    color: var(--color-text);
+
+    margin-bottom: 14px;
+
+}
+
+.site-footer > p {
+
+    font-size: 0.9rem;
+
+    margin-top: 8px;
+
+}
+
+.copyright {
+
+    color: #888888;
+
+    font-size: 0.8rem !important;
+
+    margin-top: 20px !important;
+
+}
+
+/* Personlig trademark i sidfoten */
+
+.trademark {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    align-items: center;
+
+    max-width: 1200px;
+
+    margin: 24px auto 0;
+
+    padding: 0 20px;
+
+}
+
+.trademark-image {
+
+    display: block;
+
+    width: 64px;
+
+    max-width: 100%;
+
+    height: auto;
+
+    opacity: 0.8;
+
+    transition: opacity 0.2s ease;
+
+}
+
+.trademark-image:hover {
+
+    opacity: 1;
+
+}
+
+/* Anpassning för mobil */
+
+@media (max-width: 600px) {
+
+    .trademark {
+
+        justify-content: center;
+
+        margin-top: 20px;
+
+    }
+
+    .trademark-image {
+
+        width: 52px;
+
+    }
+
+}
+
+/* ========================================
+
+   10. FAST MENY LÄNGST NER PÅ MOBIL
+
+======================================== */
+
+.bottom-navigation {
+
+    align-items: stretch;
+
+    background-color: rgba(17, 17, 17, 0.97);
+
+    border-top: 1px solid var(--color-border);
+
+    bottom: 0;
+
+    display: flex;
+
+    justify-content: space-around;
+
+    left: 0;
+
+    padding: 8px 10px;
+
+    padding-bottom: calc(8px + env(safe-area-inset-bottom));
+
+    position: fixed;
+
+    right: 0;
+
+    z-index: 1100;
+
+}
+
+.bottom-nav-link {
+
+    align-items: center;
+
+    border-radius: 10px;
+
+    color: var(--color-text-muted);
+
+    display: flex;
+
+    flex: 1;
+
+    flex-direction: column;
+
+    font-size: 0.75rem;
+
+    gap: 2px;
+
+    justify-content: center;
+
+    min-height: 52px;
+
+    min-width: 0;
+
+    padding: 4px;
+
+    transition:
+
+        background-color 0.2s ease,
+
+        color 0.2s ease;
+
+}
+
+.bottom-nav-link:hover,
+
+.bottom-nav-link[aria-current="page"] {
+
+    background-color: #292f22;
+
+    color: var(--color-primary);
+
+}
+
+.nav-icon {
+
+    font-size: 1.5rem;
+
+    line-height: 1.2;
+
+}
+
+/* ========================================
+
+   11. SURFPLATTA OCH STÖRRE SKÄRMAR
+
+======================================== */
+
+@media (min-width: 600px) {
+
+    .hero {
+
+        min-height: 500px;
+
+        padding: 70px 35px;
+
+    }
+
+    .section-container {
+
+        padding-left: 30px;
+
+        padding-right: 30px;
+
+    }
+
+    .category-grid {
+
+        gap: 22px;
+
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    }
+
+    .category-content {
+
+        padding: 18px;
+
+        padding-right: 34px;
+
+    }
+
+    .category-content h3 {
+
+        font-size: 1.2rem;
+
+    }
+
+    .category-content p {
+
+        font-size: 0.95rem;
+
+    }
+
+    .team-banner {
+
+        flex-wrap: nowrap;
+
+    }
+
+}
+
+/* ========================================
+
+   12. DATOR
+
+======================================== */
+
+@media (min-width: 900px) {
+
+    .site-header {
+
+        padding-left: max(30px, calc((100% - 1200px) / 2));
+
+        padding-right: max(30px, calc((100% - 1200px) / 2));
+
+    }
+
+    .menu-toggle {
+
+        display: none;
+
+    }
+
+    .main-navigation {
+
+        align-items: center;
+
+        background: transparent;
+
+        border: none;
+
+        border-radius: 0;
+
+        display: flex;
+
+        flex-direction: row;
+
+        gap: 12px;
+
+        padding: 0;
+
+        position: static;
+
+    }
+
+    .main-navigation a {
+
+        padding: 10px 16px;
+
+    }
+
+    .hero {
+
+        min-height: 560px;
+
+        padding: 80px 35px;
+
+    }
+
+    .hero-description {
+
+        font-size: 1.1rem;
+
+    }
+
+    .categories {
+
+        padding-bottom: 75px;
+
+        padding-top: 75px;
+
+    }
+
+    .category-grid {
+
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    }
+
+    .category-card img {
+
+        aspect-ratio: 4 / 3;
+
+    }
+
+    .bottom-navigation {
+
+        display: none;
+
+    }
+
+    .site-footer {
+
+        padding-bottom: 30px;
+
+    }
+
+}
+
+/* ========================================
+
+   13. MINSKAD RÖRELSE FÖR DEN SOM ÖNSKAR
+
+======================================== */
+
+/* Logotyp och sidhuvud på mycket smala skärmar */
+
+@media (max-width: 380px) {
+
+    .site-header {
+
+        gap: 10px;
+
+        padding-left: 14px;
+
+        padding-right: 14px;
+
+    }
+
+    .site-header .site-logo-image {
+
+        width: 145px;
+
+        max-height: 44px;
+
+    }
+
+    .menu-toggle {
+
+        flex-shrink: 0;
+
+    }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+
+    *::before,
+
+    *::after {
+
+        scroll-behavior: auto !important;
+
+        transition-duration: 0.01ms !important;
+
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+    }
+
+}
+
+/*!-------------------------------------------------------------------------------*/
+
+/*!-------------------------------------------------------------------------------*/
+
+/*!--------------------------------    OM-OSS     --------------------------------*/
+
+/*!-------------------------------------------------------------------------------*/
+
+/*!-------------------------------------------------------------------------------*/
+
+/* ========================================
+
+   OM OSS – INTRODUKTION
+
+======================================== */
+
+.about-hero {
+
+    align-items: center;
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            rgba(17, 17, 17, 0.97) 0%,
+
+            rgba(17, 17, 17, 0.78) 65%,
+
+            rgba(17, 17, 17, 0.45) 100%
+
+        ),
+
+        url("../images/hero-bild.webp") center / cover no-repeat;
+
+    display: flex;
+
+    min-height: 300px;
+
+    padding: 55px 24px;
+
+}
+
+.about-hero-content {
+
+    margin: 0 auto;
+
+    max-width: var(--container-width);
+
+    width: 100%;
+
+}
+
+.about-hero h1 {
+
+    font-size: clamp(2.7rem, 8vw, 4.5rem);
+
+    font-weight: 900;
+
+    line-height: 1.05;
+
+    margin-bottom: 18px;
+
+    text-transform: uppercase;
+
+}
+
+.about-hero h1 span {
+
+    color: var(--color-primary);
+
+}
+
+.about-hero-content > p:last-child {
+
+    color: var(--color-text-muted);
+
+    font-size: 1.05rem;
+
+    line-height: 1.7;
+
+    max-width: 560px;
+
+}
+
+/* ========================================
+
+   OM OSS – TEXT OCH BILDER
+
+======================================== */
+
+.about-section {
+
+    align-items: center;
+
+    display: grid;
+
+    gap: 28px;
+
+    padding-bottom: 55px;
+
+    padding-top: 55px;
+
+}
+
+.about-text {
+
+    min-width: 0;
+
+}
+
+.about-text h2 {
+
+    font-size: clamp(1.7rem, 5vw, 2.4rem);
+
+    line-height: 1.2;
+
+    margin-bottom: 18px;
+
+}
+
+.about-text p:not(.eyebrow) {
+
+    color: var(--color-text-muted);
+
+    line-height: 1.75;
+
+    margin-bottom: 16px;
+
+}
+
+.about-text p:last-child {
+
+    margin-bottom: 0;
+
+}
+
+.about-visual {
+
+    border: 1px solid var(--color-border);
+
+    border-radius: var(--border-radius);
+
+    overflow: hidden;
+
+}
+
+.about-visual img {
+
+    aspect-ratio: 4 / 3;
+
+    background-color: var(--color-surface);
+
+    display: block;
+
+    object-fit: cover;
+
+    width: 100%;
+
+}
+
+/* ========================================
+
+   OM OSS – MÅLGRUPP OCH KORT
+
+======================================== */
+
+.about-audience {
+
+    background-color: #181818;
+
+    border-bottom: 1px solid var(--color-border);
+
+    border-top: 1px solid var(--color-border);
+
+    padding-bottom: 55px;
+
+    padding-top: 55px;
+
+}
+
+.about-audience .section-heading {
+
+    margin-bottom: 28px;
+
+}
+
+.about-card-grid {
+
+    display: grid;
+
+    gap: 16px;
+
+    grid-template-columns: 1fr;
+
+}
+
+.about-card {
+
+    background-color: var(--color-surface);
+
+    border: 1px solid var(--color-border);
+
+    border-radius: var(--border-radius);
+
+    padding: 24px;
+
+    transition:
+
+        border-color 0.2s ease,
+
+        transform 0.2s ease;
+
+}
+
+.about-card:hover {
+
+    border-color: var(--color-primary);
+
+    transform: translateY(-3px);
+
+}
+
+.about-card-icon {
+
+    align-items: center;
+
+    background-color: #303d20;
+
+    border-radius: 12px;
+
+    color: var(--color-primary);
+
+    display: inline-flex;
+
+    font-size: 1.8rem;
+
+    height: 48px;
+
+    justify-content: center;
+
+    margin-bottom: 18px;
+
+    width: 48px;
+
+}
+
+.about-card h3 {
+
+    font-size: 1.15rem;
+
+    line-height: 1.35;
+
+    margin-bottom: 10px;
+
+}
+
+.about-card p {
+
+    color: var(--color-text-muted);
+
+    font-size: 0.95rem;
+
+    line-height: 1.7;
+
+}
+
+/* ========================================
+
+   OM OSS – PERSONLIG BERÄTTELSE
+
+======================================== */
+
+.about-story {
+
+    padding-bottom: 60px;
+
+    padding-top: 60px;
+
+}
+
+.about-story .about-text {
+
+    margin: 0 auto 42px;
+
+    max-width: 800px;
+
+    width: 100%;
+
+}
+
+.about-story .about-text h2 {
+
+    margin-bottom: 24px;
+
+}
+
+/* ========================================
+
+   OM OSS – VÅRT MOTTO
+
+======================================== */
+
+.motto-section {
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            var(--color-surface),
+
+            #20251b
+
+        );
+
+    border: 1px solid var(--color-border);
+
+    border-radius: var(--border-radius);
+
+    margin: 0 auto;
+
+    max-width: 900px;
+
+    padding: 42px 24px;
+
+    text-align: center;
+
+}
+
+.motto-label {
+
+    color: var(--color-primary);
+
+    font-size: 0.75rem;
+
+    font-weight: 700;
+
+    letter-spacing: 0.16em;
+
+    line-height: 1.6;
+
+    margin-bottom: 26px;
+
+}
+
+.motto-section h2,
+
+.motto-section h3 {
+
+    line-height: 1.4;
+
+    margin: 0;
+
+}
+
+.motto-section h2 {
+
+    color: var(--color-text);
+
+    font-size: clamp(1.6rem, 5vw, 2.6rem);
+
+    font-weight: 800;
+
+}
+
+.motto-section h3 {
+
+    color: var(--color-text);
+
+    font-size: clamp(1.3rem, 4vw, 2rem);
+
+    font-weight: 700;
+
+    margin-top: 24px;
+
+}
+
+.motto-section span {
+
+    color: var(--color-primary);
+
+    display: block;
+
+}
+
+/* ========================================
+
+   OM OSS – AVSLUTANDE SEKTION
+
+======================================== */
+
+.about-cta {
+
+    align-items: flex-start;
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            var(--color-surface),
+
+            #20251b
+
+        );
+
+    border: 1px solid var(--color-border);
+
+    border-radius: var(--border-radius);
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+
+    margin-bottom: 55px;
+
+    margin-top: 55px;
+
+    padding: 30px 24px;
+
+}
+
+.about-cta h2 {
+
+    font-size: clamp(1.7rem, 5vw, 2.3rem);
+
+    line-height: 1.2;
+
+}
+
+.about-cta > p:not(.eyebrow) {
+
+    color: var(--color-text-muted);
+
+    line-height: 1.7;
+
+    max-width: 550px;
+
+}
+
+/* ========================================
+
+   OM OSS – SURFPLATTA
+
+======================================== */
+
+@media (min-width: 600px) {
+
+    .about-hero {
+
+        min-height: 360px;
+
+        padding: 70px 35px;
+
+    }
+
+    .about-section {
+
+        gap: 36px;
+
+        padding-bottom: 70px;
+
+        padding-top: 70px;
+
+    }
+
+    .about-card-grid {
+
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    }
+
+    .about-audience {
+
+        padding-bottom: 70px;
+
+        padding-top: 70px;
+
+    }
+
+    .about-story {
+
+        padding-bottom: 75px;
+
+        padding-top: 75px;
+
+    }
+
+    .motto-section {
+
+        padding: 48px 36px;
+
+    }
+
+    .about-cta {
+
+        padding: 36px;
+
+    }
+
+}
+
+/* ========================================
+
+   OM OSS – DATOR
+
+======================================== */
+
+@media (min-width: 900px) {
+
+    .about-hero {
+
+        min-height: 420px;
+
+    }
+
+    .about-section {
+
+        gap: 55px;
+
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        padding-bottom: 85px;
+
+        padding-top: 85px;
+
+    }
+
+    .about-team .about-visual {
+
+        order: 0;
+
+    }
+
+    .about-team .about-text {
+
+        order: 1;
+
+    }
+
+    .about-card-grid {
+
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    }
+
+    .about-card {
+
+        padding: 28px;
+
+    }
+
+    .about-audience {
+
+        padding-bottom: 85px;
+
+        padding-top: 85px;
+
+    }
+
+    .about-story {
+
+        padding-bottom: 85px;
+
+        padding-top: 85px;
+
+    }
+
+    .about-story .about-text {
+
+        margin-bottom: 55px;
+
+    }
+
+    .motto-section {
+
+        padding: 55px 48px;
+
+    }
+
+    .about-cta {
+
+        margin-bottom: 70px;
+
+        margin-top: 70px;
+
+        padding: 45px;
+
+    }
+
+}
+
+/* ========================================
+
+   OM OSS – SMÅ MOBILSKÄRMAR
+
+======================================== */
+
+@media (max-width: 380px) {
+
+    .about-hero {
+
+        padding-left: 18px;
+
+        padding-right: 18px;
+
+    }
+
+    .about-story {
+
+        padding-bottom: 40px;
+
+        padding-top: 40px;
+
+    }
+
+    .motto-section {
+
+        padding: 32px 16px;
+
+    }
+
+    .motto-label {
+
+        font-size: 0.68rem;
+
+        letter-spacing: 0.12em;
+
+    }
+
+}
+
+/*!-------------------------------------------------------------------------------*/
+
+/*!-------------------------------------------------------------------------------*/
+
+
+/* ========================================
+   LAGSPELSÖVNINGAR – INTRODUKTION
+======================================== */
+
+.page-hero {
+    position: relative;
+    padding: 80px 24px 64px;
+    background: linear-gradient(
+        135deg,
+        #181818 0%,
+        #111111 65%,
+        #202020 100%
+    );
+    border-bottom: 1px solid #333333;
+    overflow: hidden;
+}
+
+.page-hero .container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.page-hero .container > p:first-child {
+    display: inline-block;
+    margin: 0 0 18px;
+    color: #A3E635;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.page-hero h1 {
+    max-width: 800px;
+    margin: 0 0 20px;
+    color: #FFFFFF;
+    font-size: clamp(2.3rem, 5vw, 4rem);
+    line-height: 1.1;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+}
+
+.page-hero .container > p:nth-of-type(2) {
+    max-width: 650px;
+    margin: 0 0 28px;
+    color: #CCCCCC;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.page-hero a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #A3E635;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.page-hero a:hover {
+    color: #FFFFFF;
+}
+
+
+/* ========================================
+   LAGSPELSÖVNINGAR – ÖVNINGSINTRODUKTION
+======================================== */
+
+.exercise-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 64px 24px 80px;
+}
+
+.exercise-section h2 {
+    position: relative;
+    margin: 0 0 18px;
+    padding-left: 18px;
+    color: #FFFFFF;
+    font-size: clamp(1.7rem, 3vw, 2.4rem);
+    line-height: 1.25;
+    font-weight: 800;
+}
+
+.exercise-section h2::before {
+    content: "";
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: 0;
+    width: 5px;
+    border-radius: 4px;
+    background: #A3E635;
+}
+
+.exercise-intro {
+    max-width: 680px;
+    margin: 0 0 36px;
+    color: #B8B8B8;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+
+/* ========================================
+   MOBILANPASSNING
+======================================== */
+
+@media (max-width: 600px) {
+    .page-hero {
+        padding: 54px 20px 44px;
+    }
+
+    .page-hero h1 {
+        letter-spacing: -0.8px;
+    }
+
+    .page-hero .container > p:nth-of-type(2) {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    .exercise-section {
+        padding: 44px 20px 60px;
+    }
+
+    .exercise-intro {
+        margin-bottom: 28px;
+    }
+}
+
+
+/* ========================================
+   LAGSPELSÖVNINGAR – KORT
+======================================== */
+
+.exercise-section {
+    padding-top: 40px;
+    padding-bottom: 60px;
+}
+
+.exercise-intro {
+    color: var(--color-text-muted);
+    margin-bottom: 28px;
+    max-width: 650px;
+}
+
+.team-exercise-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+}
+
+.team-exercise-card {
+    margin-bottom: 2rem;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    min-width: 0;
+}
+
+.team-exercise-image {
+    position: relative;
+    background-color: var(--color-surface-light);
+}
+
+.team-exercise-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.team-exercise-tag {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    background-color: var(--color-primary);
+    color: #111111;
+    font-size: 0.8rem;
+    font-weight: 800;
+}
+
+.team-exercise-content {
+    padding: 20px;
+}
+
+.team-exercise-content h3 {
+    font-size: 1.4rem;
+    line-height: 1.3;
+    margin-bottom: 10px;
+}
+
+.team-exercise-description {
+    color: var(--color-text-muted);
+    margin-bottom: 18px;
+}
+
+.team-exercise-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 14px 0;
+    margin-bottom: 18px;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+}
+
+.team-exercise-details h4 {
+    color: var(--color-primary);
+    font-size: 1rem;
+    margin-top: 22px;
+    margin-bottom: 6px;
+}
+
+.team-exercise-details h4:first-child {
+    margin-top: 0;
+}
+
+.team-exercise-details p,
+.team-exercise-details li {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+.team-exercise-details ol {
+    padding-left: 22px;
+}
+
+.team-exercise-details li {
+    padding-left: 4px;
+    margin-bottom: 8px;
+}
+
+/* Surfplatta och större skärmar */
+@media (min-width: 700px) {
+    .team-exercise-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
